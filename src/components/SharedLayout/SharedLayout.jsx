@@ -1,19 +1,15 @@
-import { Link, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Outlet } from 'react-router-dom';
+import Header from 'components/Header';
 
 export default function SharedLayout() {
   return (
     <>
-      <header className="container">
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>
-        </nav>
-      </header>
-      <main className="container">
+      <Header />
+      <main className="container section">
         <Suspense
           fallback={
             <ThreeDots

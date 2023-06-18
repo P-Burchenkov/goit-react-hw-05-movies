@@ -1,0 +1,9 @@
+.movieList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link:hover, link:focus{
+   color: var(--accent-color)
+}

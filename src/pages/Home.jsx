@@ -12,15 +12,18 @@ export default function Home() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchTrandMovies()
-      .then(({ data }) => setMovies([...data.results]))
-      .catch(error => toast.error(error.message))
-      .finally(setIsLoading(false));
+    try {
+      fetchTrandMovies().then(({ data }) => setMovies([...data.results]));
+      setIsLoading(false);
+    } catch (error) {
+      toast.error(error.message);
+      setIsLoading(false);
+    }
   }, []);
 
   return (
     <>
-      <h1>Trending today</h1>
+      <h1 className="hero-title">Trending today</h1>
 
       {isLoading && (
         <ThreeDots
@@ -34,18 +37,7 @@ export default function Home() {
           visible={true}
         />
       )}
-      {movies &&
-        movies.map(({ original_title, id, name }) => {
-          return (
-            <MoviesList
-              key={id}
-              location={location}
-              original_title={original_title}
-              name={name}
-              id={id}
-            />
-          );
-        })}
+      {movies && <MoviesList movies={movies} location={location} />}
     </>
   );
 }

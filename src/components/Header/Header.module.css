@@ -1,0 +1,22 @@
+.header {
+    width: 1200px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--sec-bgc);
+    border-radius: 4px;    
+    
+}
+
+.mainNav {
+    display: flex;
+    gap: 20px;
+}
+
+.link {    
+    color: var(--sec-color);
+}
+
+.link:hover, .link:focus {
+    color: var(--accent-color);
+}

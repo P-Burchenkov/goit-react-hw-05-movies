@@ -25,27 +25,34 @@ export default function Movies() {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     if (!queryString) {
-      setIsLoading(false);
       setMovies(null);
       return;
     }
 
-    fetchMovie(queryString)
-      .then(({ data }) => {
+    setIsLoading(true);
+
+    try {
+      fetchMovie(queryString).then(({ data }) => {
         if (data.results.length === 0) {
-          return toast.warn(`There is no films with name  ${queryString}`);
+          toast.warn(`There is no films with name  ${queryString}`);
+          setIsLoading(false);
+          return;
         }
         setMovies([...data.results]);
-      })
-      .catch(error => toast.error(error.message))
-      .finally(setIsLoading(false));
+        setIsLoading(false);
+      });
+    } catch (error) {
+      toast.error(error.message);
+      setIsLoading(false);
+    }
   }, [queryString]);
 
   return (
     <>
       <SearchForm onSubmit={onSubmit} />
+
+      {movies && <MoviesList movies={movies} location={location} />}
       {isLoading && (
         <ThreeDots
           height="80"
@@ -58,19 +65,6 @@ export default function Movies() {
           visible={true}
         />
       )}
-
-      {movies &&
-        movies.map(({ id, name, original_title }) => {
-          return (
-            <MoviesList
-              key={id}
-              location={location}
-              id={id}
-              original_title={original_title}
-              name={name}
-            />
-          );
-        })}
     </>
   );
 }

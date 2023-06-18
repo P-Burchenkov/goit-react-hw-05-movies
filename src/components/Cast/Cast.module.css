@@ -1,0 +1,16 @@
+.cast {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    
+   
+}
+
+.item {
+    flex-basis: calc((100% - 48px) / 4);    
+}
+
+.name {
+    margin-top: 8px;
+}
+

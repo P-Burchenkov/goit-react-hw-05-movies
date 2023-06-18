@@ -1,0 +1,22 @@
+.title {
+    margin-bottom: 16px;
+    font-size: 20px;  
+    font-weight: 500;  
+}
+
+.cast {
+    margin-bottom: 8px;
+}
+
+.link {
+    font-style: italic;
+}
+
+.link:hover,
+.link:focus {
+    color: var(--accent-color)
+}
+
+.AdditionalInformation {
+    margin-bottom: 20px;
+}
